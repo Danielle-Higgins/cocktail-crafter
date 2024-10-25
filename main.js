@@ -43,4 +43,6 @@ getCocktailBtn.addEventListener("click", () => {
       });
     })
     .catch((error) => console.log(`${error}`));
+
+  input.value = "";
 });

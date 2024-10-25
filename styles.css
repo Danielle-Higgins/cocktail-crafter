@@ -48,6 +48,10 @@ img {
   padding: 0 20px 90px;
 }
 
+.cocktail-section .container {
+  max-width: 80%;
+}
+
 .cocktail-section .search {
   max-width: 600px;
   margin: 0 auto;
@@ -96,7 +100,6 @@ img {
 }
 
 .card-list .card-item {
-  width: 400px;
   background-color: #fff;
   padding: 18px;
   border-radius: 12px;
@@ -118,8 +121,15 @@ img {
   font-size: 1.5rem;
 }
 
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+}
+
 /* ----- Utility Classes ----- */
 .container {
+  /* border: 2px solid black; */
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
