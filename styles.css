@@ -33,3 +33,71 @@ img {
 }
 
 /* ----- Header Styles ----- */
+.header {
+  text-align: center;
+  padding: 100px 0 50px;
+}
+
+.header h1 {
+  font-size: 5rem;
+  font-weight: 600;
+}
+
+/* ----- Cocktail Section ----- */
+.cocktail-section {
+  padding: 0 20px;
+}
+
+.cocktail-section .search {
+  max-width: 600px;
+  margin: 0 auto;
+  height: 80px;
+  background-color: #8595e8;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 100px;
+}
+
+.cocktail-section .search input {
+  height: 100%;
+  flex: 1;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #fff;
+  padding: 0 30px;
+}
+
+.cocktail-section .search input::placeholder {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.cocktail-section .search button {
+  height: 100%;
+  padding: 0 40px;
+  font-size: 1.8rem;
+  background-color: #ff3929;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: 0.5s;
+}
+
+.cocktail-section .search button:hover {
+  background-color: rgb(234, 51, 61);
+}
+
+/* ----- Utility Classes ----- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
