@@ -45,7 +45,7 @@ img {
 
 /* ----- Cocktail Section ----- */
 .cocktail-section {
-  padding: 0 20px;
+  padding: 0 20px 90px;
 }
 
 .cocktail-section .search {
@@ -53,7 +53,7 @@ img {
   margin: 0 auto;
   height: 80px;
   background-color: #8595e8;
-  border-radius: 5px;
+  border-radius: 8px;
 
   display: flex;
   align-items: center;
@@ -93,6 +93,29 @@ img {
 
 .cocktail-section .search button:hover {
   background-color: rgb(234, 51, 61);
+}
+
+.card-list .card-item {
+  width: 400px;
+  background-color: #fff;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.card-list .card-item img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.card-list .card-item .cocktail-name {
+  margin: 16px 0 18px;
+  font-weight: 600;
+}
+
+.card-list .card-item .cocktail-info {
+  font-size: 1.5rem;
 }
 
 /* ----- Utility Classes ----- */
