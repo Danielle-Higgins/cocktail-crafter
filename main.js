@@ -15,7 +15,7 @@ getCocktailBtn.addEventListener("click", () => {
     .then((response) => response.json())
     .then((data) => {
       //   console.log(data);
-      console.log(data.drinks);
+      //   console.log(data.drinks);
 
       data.drinks.forEach((drink) => {
         // create list item
