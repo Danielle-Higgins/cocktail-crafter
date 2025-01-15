@@ -1,48 +1,73 @@
-const input = document.querySelector("#search-box");
-const getCocktailBtn = document.querySelector("#cocktail-btn");
-const cardList = document.querySelector(".card-list");
+const BASEURL = "https://www.thecocktaildb.com/api/json/v1/1";
 
-getCocktailBtn.addEventListener("click", () => {
-  const inputVal = input.value;
-  const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputVal}`;
+class CocktailCrafter {
+  constructor(input, btn, cardList) {
+    this.input = document.getElementById(input);
+    this.searchBtn = document.getElementById(btn);
+    this.cardList = document.querySelector(`.${cardList}`);
 
-  // check if the ul already has list items inside
-  if (cardList.innerHTML) {
-    cardList.innerHTML = "";
+    this.attachEventListners();
   }
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      //   console.log(data);
-      //   console.log(data.drinks);
+  attachEventListners() {
+    this.searchBtn.addEventListener("click", () => this.handleSearch());
+  }
 
-      data.drinks.forEach((drink) => {
-        // create list item
-        const listItem = document.createElement("li");
-        listItem.classList.add("card-item");
+  handleSearch() {
+    const inputVal = this.input.value;
 
-        // append to the ul
-        cardList.appendChild(listItem);
+    if (!inputVal) return;
+    else this.searchCocktail(inputVal);
 
-        const image = document.createElement("img");
-        image.classList.add("cocktail-img");
-        image.src = drink.strDrinkThumb;
-        image.alt = `${drink.strDrink} image`;
-        listItem.appendChild(image);
+    if (this.cardList.innerHTML) this.cardList.innerHTML = "";
 
-        const cocktailName = document.createElement("p");
-        cocktailName.classList.add("cocktail-name");
-        cocktailName.textContent = drink.strDrink;
-        listItem.appendChild(cocktailName);
+    this.input.value = "";
+  }
 
-        const cocktailInfo = document.createElement("p");
-        cocktailInfo.classList.add("cocktail-info");
-        cocktailInfo.textContent = drink.strInstructions;
-        listItem.appendChild(cocktailInfo);
-      });
-    })
-    .catch((error) => console.log(`${error}`));
+  async searchCocktail(cocktail) {
+    const url = `${BASEURL}/search.php?s=${cocktail}`;
 
-  input.value = "";
-});
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) throw new Error("Network response was not ok!");
+
+      const data = await response.json();
+      console.log(data);
+      console.log(data.drinks);
+
+      this.displayDrinks(data.drinks);
+    } catch (error) {
+      console.log("Error", error);
+    }
+  }
+
+  displayDrinks(array) {
+    array.forEach((drink) => {
+      // create list item
+      const li = document.createElement("li");
+      li.classList.add("card-item");
+
+      // append to the ul
+      this.cardList.appendChild(li);
+
+      const img = document.createElement("img");
+      img.classList.add("cocktail-img");
+      img.src = drink.strDrinkThumb;
+      img.alt = `${drink.strDrink} image`;
+      li.appendChild(img);
+
+      const cocktailName = document.createElement("p");
+      cocktailName.classList.add("cocktail-name");
+      cocktailName.textContent = drink.strDrink;
+      li.appendChild(cocktailName);
+
+      const cocktailInfo = document.createElement("p");
+      cocktailInfo.classList.add("cocktail-info");
+      cocktailInfo.textContent = drink.strInstructions;
+      li.appendChild(cocktailInfo);
+    });
+  }
+}
+
+const cocktail = new CocktailCrafter("search-box", "cocktail-btn", "card-list");
